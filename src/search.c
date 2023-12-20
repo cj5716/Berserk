@@ -299,8 +299,8 @@ void Search(ThreadData* thread) {
       scoreChangeFactor = Max(0.4843, Min(1.4498, scoreChangeFactor));
 
       uint64_t bestMoveNodes = thread->rootMoves[0].nodes;
-      double pctNodesNotBest = 1.0 - (double) bestMoveNodes / thread->nodes;
-      double nodeCountFactor = Max(0.5464, pctNodesNotBest * 2.1394 + 0.4393);
+      double pctNodesBest = (double) bestMoveNodes / thread->nodes;
+      double nodeCountFactor = (1.62 - pctNodesBest) / 1.48;
       if (bestScore >= TB_WIN_BOUND)
         nodeCountFactor = 0.5;
 
